@@ -35,7 +35,8 @@ export function GISPage() {
         zoomControl: false,
       });
 
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png", {
+
+      L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png", {
         attribution: '©OpenStreetMap ©CARTO',
         maxZoom: 19,
       }).addTo(map);
@@ -69,7 +70,7 @@ export function GISPage() {
   return (
     <div className="relative flex-1 flex overflow-hidden">
       {/* Map Container */}
-      <div ref={mapRef} className="flex-1 h-full" style={{ background: "#0d1117" }} />
+      <div ref={mapRef} className="flex-1 h-full" style={{ background: "#e8f0fe" }} />
 
       {/* Left Controls */}
       <div className="gis-control-panel absolute left-4 top-4 space-y-2 w-52">

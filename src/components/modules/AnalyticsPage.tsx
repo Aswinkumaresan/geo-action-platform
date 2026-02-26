@@ -54,7 +54,7 @@ export function AnalyticsPage() {
             <LineChart data={forecastData}>
               <XAxis dataKey="week" tick={{ fill: "hsl(215,15%,50%)", fontSize: 11 }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fill: "hsl(215,15%,50%)", fontSize: 11 }} axisLine={false} tickLine={false} />
-              <Tooltip contentStyle={{ background: "hsl(220,18%,10%)", border: "1px solid hsl(220,15%,18%)", borderRadius: 8, fontSize: 12 }} />
+              <Tooltip contentStyle={{ background: "#ffffff", border: "1px solid hsl(214,22%,84%)", borderRadius: 8, fontSize: 12, boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }} />
               <Line type="monotone" dataKey="actual" stroke="hsl(185,75%,45%)" strokeWidth={2.5} dot={{ fill: "hsl(185,75%,45%)", r: 4 }} name="Actual" connectNulls={false} />
               <Line type="monotone" dataKey="predicted" stroke="hsl(270,65%,58%)" strokeWidth={2} strokeDasharray="5 5" dot={false} name="Predicted" />
             </LineChart>
@@ -86,7 +86,7 @@ export function AnalyticsPage() {
           <BarChart data={districtRisk} barSize={20}>
             <XAxis dataKey="district" tick={{ fill: "hsl(215,15%,50%)", fontSize: 10 }} axisLine={false} tickLine={false} />
             <YAxis tick={{ fill: "hsl(215,15%,50%)", fontSize: 10 }} axisLine={false} tickLine={false} domain={[0, 100]} />
-            <Tooltip contentStyle={{ background: "hsl(220,18%,10%)", border: "1px solid hsl(220,15%,18%)", borderRadius: 8, fontSize: 12 }} />
+            <Tooltip contentStyle={{ background: "#ffffff", border: "1px solid hsl(214,22%,84%)", borderRadius: 8, fontSize: 12, boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }} />
             <Bar dataKey="score" radius={[4, 4, 0, 0]}>
               {districtRisk.map((d) => (
                 <Cell key={d.district} fill={d.score >= 75 ? "hsl(0,75%,55%)" : d.score >= 55 ? "hsl(30,90%,55%)" : "hsl(145,65%,42%)"} />

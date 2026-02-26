@@ -86,7 +86,7 @@ export function DashboardPage() {
               </defs>
               <XAxis dataKey="month" tick={{ fill: "hsl(215,15%,50%)", fontSize: 11 }} axisLine={false} tickLine={false} />
               <YAxis tick={{ fill: "hsl(215,15%,50%)", fontSize: 11 }} axisLine={false} tickLine={false} />
-              <Tooltip contentStyle={{ background: "hsl(220,18%,10%)", border: "1px solid hsl(220,15%,18%)", borderRadius: 8, fontSize: 12 }} />
+              <Tooltip contentStyle={{ background: "#ffffff", border: "1px solid hsl(214,22%,84%)", borderRadius: 8, fontSize: 12, boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }} />
               <Area type="monotone" dataKey="cases" stroke="hsl(230,70%,55%)" fill="url(#gradCases)" strokeWidth={2} name="Cases" />
               <Area type="monotone" dataKey="seizures" stroke="hsl(185,75%,45%)" fill="url(#gradSeizures)" strokeWidth={2} name="Seizures" />
             </AreaChart>
@@ -102,7 +102,7 @@ export function DashboardPage() {
               <Pie data={offenceBreakdown} cx="50%" cy="50%" innerRadius={45} outerRadius={65} paddingAngle={3} dataKey="count">
                 {offenceBreakdown.map((_, i) => <Cell key={i} fill={COLORS[i % COLORS.length]} />)}
               </Pie>
-              <Tooltip contentStyle={{ background: "hsl(220,18%,10%)", border: "1px solid hsl(220,15%,18%)", borderRadius: 8, fontSize: 12 }} />
+              <Tooltip contentStyle={{ background: "#ffffff", border: "1px solid hsl(214,22%,84%)", borderRadius: 8, fontSize: 12, boxShadow: "0 4px 12px rgba(0,0,0,0.08)" }} />
             </PieChart>
           </ResponsiveContainer>
           <div className="mt-2 space-y-1">

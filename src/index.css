@@ -6,106 +6,76 @@
 
 @layer base {
   :root {
-    /* Base surfaces */
-    --background: 220 20% 7%;
-    --foreground: 210 20% 94%;
+    /* Base surfaces — Light Theme */
+    --background: 215 30% 96%;
+    --foreground: 222 45% 12%;
 
-    --card: 220 18% 10%;
-    --card-foreground: 210 20% 94%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 45% 12%;
 
-    --popover: 220 18% 10%;
-    --popover-foreground: 210 20% 94%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 45% 12%;
 
-    /* Primary: Deep Navy/Indigo */
-    --primary: 230 70% 55%;
+    /* Primary: Vibrant Indigo */
+    --primary: 230 72% 52%;
     --primary-foreground: 0 0% 100%;
 
-    /* Secondary: darker navy */
-    --secondary: 220 18% 15%;
-    --secondary-foreground: 210 20% 85%;
+    /* Secondary */
+    --secondary: 215 30% 92%;
+    --secondary-foreground: 222 45% 18%;
 
     /* Muted */
-    --muted: 220 15% 14%;
-    --muted-foreground: 215 15% 55%;
+    --muted: 214 25% 93%;
+    --muted-foreground: 215 18% 48%;
 
     /* Accent: Teal/Cyan */
-    --accent: 185 75% 45%;
+    --accent: 185 72% 38%;
     --accent-foreground: 0 0% 100%;
 
     /* Destructive */
-    --destructive: 0 75% 55%;
+    --destructive: 0 72% 52%;
     --destructive-foreground: 0 0% 100%;
 
     /* Borders */
-    --border: 220 15% 18%;
-    --input: 220 15% 18%;
-    --ring: 230 70% 55%;
+    --border: 214 22% 84%;
+    --input: 214 22% 88%;
+    --ring: 230 72% 52%;
 
     --radius: 0.5rem;
 
-    /* Sidebar */
-    --sidebar-background: 222 25% 6%;
-    --sidebar-foreground: 210 15% 75%;
-    --sidebar-primary: 230 70% 55%;
+    /* Sidebar — Deep Navy keeps authority */
+    --sidebar-background: 228 42% 18%;
+    --sidebar-foreground: 215 25% 78%;
+    --sidebar-primary: 210 100% 70%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 20% 13%;
-    --sidebar-accent-foreground: 210 20% 94%;
-    --sidebar-border: 220 15% 12%;
-    --sidebar-ring: 230 70% 55%;
+    --sidebar-accent: 228 38% 24%;
+    --sidebar-accent-foreground: 215 25% 92%;
+    --sidebar-border: 228 35% 23%;
+    --sidebar-ring: 210 100% 70%;
 
     /* Custom enforcement tokens */
-    --risk-high: 0 75% 55%;
-    --risk-medium: 30 90% 55%;
-    --risk-low: 145 65% 42%;
-    --intelligence: 270 65% 58%;
-    --gis-accent: 185 75% 45%;
-    --command-bar: 222 25% 8%;
+    --risk-high: 0 72% 52%;
+    --risk-medium: 32 95% 50%;
+    --risk-low: 148 60% 36%;
+    --intelligence: 268 62% 55%;
+    --gis-accent: 185 72% 38%;
+    --command-bar: 0 0% 100%;
 
     /* Gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(230, 70%, 55%), hsl(185, 75%, 45%));
-    --gradient-card: linear-gradient(160deg, hsl(220, 18%, 12%), hsl(220, 20%, 9%));
-    --gradient-sidebar: linear-gradient(180deg, hsl(222, 25%, 6%), hsl(220, 20%, 5%));
-    --gradient-danger: linear-gradient(135deg, hsl(0, 75%, 55%), hsl(20, 80%, 50%));
-    --gradient-success: linear-gradient(135deg, hsl(145, 65%, 42%), hsl(160, 60%, 38%));
-
-    /* Glows */
-    --glow-primary: 0 0 24px hsl(230 70% 55% / 0.3);
-    --glow-accent: 0 0 24px hsl(185 75% 45% / 0.3);
-    --glow-danger: 0 0 20px hsl(0 75% 55% / 0.25);
+    --gradient-primary: linear-gradient(135deg, hsl(230, 72%, 52%), hsl(185, 72%, 38%));
+    --gradient-card: linear-gradient(160deg, hsl(0, 0%, 100%), hsl(215, 30%, 97%));
+    --gradient-sidebar: linear-gradient(180deg, hsl(228, 42%, 18%), hsl(228, 45%, 14%));
+    --gradient-danger: linear-gradient(135deg, hsl(0, 72%, 52%), hsl(20, 85%, 48%));
+    --gradient-success: linear-gradient(135deg, hsl(148, 60%, 36%), hsl(160, 55%, 32%));
 
     /* Shadows */
-    --shadow-card: 0 4px 24px hsl(220 25% 3% / 0.5);
-    --shadow-elevated: 0 8px 40px hsl(220 25% 3% / 0.7);
-  }
+    --shadow-card: 0 2px 16px hsl(222 35% 18% / 0.08), 0 1px 4px hsl(222 35% 18% / 0.06);
+    --shadow-elevated: 0 8px 32px hsl(222 35% 18% / 0.12), 0 2px 8px hsl(222 35% 18% / 0.08);
 
-  .light {
-    --background: 215 25% 97%;
-    --foreground: 222 40% 10%;
-    --card: 0 0% 100%;
-    --card-foreground: 222 40% 10%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 222 40% 10%;
-    --primary: 230 70% 48%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 215 20% 92%;
-    --secondary-foreground: 222 40% 20%;
-    --muted: 215 20% 93%;
-    --muted-foreground: 215 15% 45%;
-    --accent: 185 65% 38%;
-    --accent-foreground: 0 0% 100%;
-    --destructive: 0 72% 51%;
-    --destructive-foreground: 0 0% 100%;
-    --border: 214 20% 85%;
-    --input: 214 20% 88%;
-    --ring: 230 70% 48%;
-    --sidebar-background: 222 30% 15%;
-    --sidebar-foreground: 210 15% 80%;
-    --sidebar-primary: 230 70% 60%;
-    --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 220 20% 20%;
-    --sidebar-accent-foreground: 210 20% 94%;
-    --sidebar-border: 220 15% 22%;
-    --sidebar-ring: 230 70% 55%;
+    /* Glows */
+    --glow-primary: 0 0 24px hsl(230 72% 52% / 0.2);
+    --glow-accent: 0 0 24px hsl(185 72% 38% / 0.2);
+    --glow-danger: 0 0 20px hsl(0 72% 52% / 0.18);
   }
 }
 
@@ -121,27 +91,32 @@
     height: 5px;
   }
   ::-webkit-scrollbar-track {
-    background: hsl(var(--background));
+    background: hsl(var(--muted));
   }
   ::-webkit-scrollbar-thumb {
     background: hsl(var(--border));
     border-radius: 3px;
   }
   ::-webkit-scrollbar-thumb:hover {
-    background: hsl(var(--muted-foreground));
+    background: hsl(var(--primary) / 0.4);
   }
 }
 
 @layer components {
   .stat-card {
-    @apply relative overflow-hidden rounded-lg border bg-card p-5;
+    @apply relative overflow-hidden rounded-xl border bg-card p-5 transition-all duration-200;
     box-shadow: var(--shadow-card);
     background: var(--gradient-card);
+    border-color: hsl(var(--border));
+  }
+  .stat-card:hover {
+    box-shadow: var(--shadow-elevated);
+    border-color: hsl(var(--primary) / 0.2);
   }
   .stat-card::before {
     content: '';
     @apply absolute inset-0 opacity-0 transition-opacity duration-300;
-    background: linear-gradient(135deg, hsl(var(--primary) / 0.05), transparent);
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.04), transparent);
   }
   .stat-card:hover::before {
     @apply opacity-100;
@@ -149,6 +124,7 @@
   .command-bar {
     background: hsl(var(--command-bar));
     border-bottom: 1px solid hsl(var(--border));
+    box-shadow: 0 1px 4px hsl(222 35% 18% / 0.06);
   }
   .risk-badge-high {
     @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold;
