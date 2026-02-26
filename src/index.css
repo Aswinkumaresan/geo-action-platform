@@ -2,95 +2,110 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=IBM+Plex+Mono:wght@400;500&display=swap');
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    /* Base surfaces */
+    --background: 220 20% 7%;
+    --foreground: 210 20% 94%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card: 220 18% 10%;
+    --card-foreground: 210 20% 94%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover: 220 18% 10%;
+    --popover-foreground: 210 20% 94%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* Primary: Deep Navy/Indigo */
+    --primary: 230 70% 55%;
+    --primary-foreground: 0 0% 100%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* Secondary: darker navy */
+    --secondary: 220 18% 15%;
+    --secondary-foreground: 210 20% 85%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    /* Muted */
+    --muted: 220 15% 14%;
+    --muted-foreground: 215 15% 55%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    /* Accent: Teal/Cyan */
+    --accent: 185 75% 45%;
+    --accent-foreground: 0 0% 100%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    /* Destructive */
+    --destructive: 0 75% 55%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    /* Borders */
+    --border: 220 15% 18%;
+    --input: 220 15% 18%;
+    --ring: 230 70% 55%;
 
     --radius: 0.5rem;
 
-    --sidebar-background: 0 0% 98%;
+    /* Sidebar */
+    --sidebar-background: 222 25% 6%;
+    --sidebar-foreground: 210 15% 75%;
+    --sidebar-primary: 230 70% 55%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 220 20% 13%;
+    --sidebar-accent-foreground: 210 20% 94%;
+    --sidebar-border: 220 15% 12%;
+    --sidebar-ring: 230 70% 55%;
 
-    --sidebar-foreground: 240 5.3% 26.1%;
+    /* Custom enforcement tokens */
+    --risk-high: 0 75% 55%;
+    --risk-medium: 30 90% 55%;
+    --risk-low: 145 65% 42%;
+    --intelligence: 270 65% 58%;
+    --gis-accent: 185 75% 45%;
+    --command-bar: 222 25% 8%;
 
-    --sidebar-primary: 240 5.9% 10%;
+    /* Gradients */
+    --gradient-primary: linear-gradient(135deg, hsl(230, 70%, 55%), hsl(185, 75%, 45%));
+    --gradient-card: linear-gradient(160deg, hsl(220, 18%, 12%), hsl(220, 20%, 9%));
+    --gradient-sidebar: linear-gradient(180deg, hsl(222, 25%, 6%), hsl(220, 20%, 5%));
+    --gradient-danger: linear-gradient(135deg, hsl(0, 75%, 55%), hsl(20, 80%, 50%));
+    --gradient-success: linear-gradient(135deg, hsl(145, 65%, 42%), hsl(160, 60%, 38%));
 
-    --sidebar-primary-foreground: 0 0% 98%;
+    /* Glows */
+    --glow-primary: 0 0 24px hsl(230 70% 55% / 0.3);
+    --glow-accent: 0 0 24px hsl(185 75% 45% / 0.3);
+    --glow-danger: 0 0 20px hsl(0 75% 55% / 0.25);
 
-    --sidebar-accent: 240 4.8% 95.9%;
-
-    --sidebar-accent-foreground: 240 5.9% 10%;
-
-    --sidebar-border: 220 13% 91%;
-
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    /* Shadows */
+    --shadow-card: 0 4px 24px hsl(220 25% 3% / 0.5);
+    --shadow-elevated: 0 8px 40px hsl(220 25% 3% / 0.7);
   }
 
-  .dark {
-    --background: 222.2 84% 4.9%;
-    --foreground: 210 40% 98%;
-
-    --card: 222.2 84% 4.9%;
-    --card-foreground: 210 40% 98%;
-
-    --popover: 222.2 84% 4.9%;
-    --popover-foreground: 210 40% 98%;
-
-    --primary: 210 40% 98%;
-    --primary-foreground: 222.2 47.4% 11.2%;
-
-    --secondary: 217.2 32.6% 17.5%;
-    --secondary-foreground: 210 40% 98%;
-
-    --muted: 217.2 32.6% 17.5%;
-    --muted-foreground: 215 20.2% 65.1%;
-
-    --accent: 217.2 32.6% 17.5%;
-    --accent-foreground: 210 40% 98%;
-
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 40% 98%;
-
-    --border: 217.2 32.6% 17.5%;
-    --input: 217.2 32.6% 17.5%;
-    --ring: 212.7 26.8% 83.9%;
-    --sidebar-background: 240 5.9% 10%;
-    --sidebar-foreground: 240 4.8% 95.9%;
-    --sidebar-primary: 224.3 76.3% 48%;
+  .light {
+    --background: 215 25% 97%;
+    --foreground: 222 40% 10%;
+    --card: 0 0% 100%;
+    --card-foreground: 222 40% 10%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 222 40% 10%;
+    --primary: 230 70% 48%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 215 20% 92%;
+    --secondary-foreground: 222 40% 20%;
+    --muted: 215 20% 93%;
+    --muted-foreground: 215 15% 45%;
+    --accent: 185 65% 38%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 72% 51%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 214 20% 85%;
+    --input: 214 20% 88%;
+    --ring: 230 70% 48%;
+    --sidebar-background: 222 30% 15%;
+    --sidebar-foreground: 210 15% 80%;
+    --sidebar-primary: 230 70% 60%;
     --sidebar-primary-foreground: 0 0% 100%;
-    --sidebar-accent: 240 3.7% 15.9%;
-    --sidebar-accent-foreground: 240 4.8% 95.9%;
-    --sidebar-border: 240 3.7% 15.9%;
-    --sidebar-ring: 217.2 91.2% 59.8%;
+    --sidebar-accent: 220 20% 20%;
+    --sidebar-accent-foreground: 210 20% 94%;
+    --sidebar-border: 220 15% 22%;
+    --sidebar-ring: 230 70% 55%;
   }
 }
 
@@ -98,8 +113,90 @@ All colors MUST be HSL.
   * {
     @apply border-border;
   }
-
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-inter antialiased;
+  }
+  ::-webkit-scrollbar {
+    width: 5px;
+    height: 5px;
+  }
+  ::-webkit-scrollbar-track {
+    background: hsl(var(--background));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: hsl(var(--border));
+    border-radius: 3px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: hsl(var(--muted-foreground));
+  }
+}
+
+@layer components {
+  .stat-card {
+    @apply relative overflow-hidden rounded-lg border bg-card p-5;
+    box-shadow: var(--shadow-card);
+    background: var(--gradient-card);
+  }
+  .stat-card::before {
+    content: '';
+    @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+    background: linear-gradient(135deg, hsl(var(--primary) / 0.05), transparent);
+  }
+  .stat-card:hover::before {
+    @apply opacity-100;
+  }
+  .command-bar {
+    background: hsl(var(--command-bar));
+    border-bottom: 1px solid hsl(var(--border));
+  }
+  .risk-badge-high {
+    @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold;
+    background: hsl(var(--risk-high) / 0.15);
+    color: hsl(var(--risk-high));
+    border: 1px solid hsl(var(--risk-high) / 0.3);
+  }
+  .risk-badge-medium {
+    @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold;
+    background: hsl(var(--risk-medium) / 0.15);
+    color: hsl(var(--risk-medium));
+    border: 1px solid hsl(var(--risk-medium) / 0.3);
+  }
+  .risk-badge-low {
+    @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold;
+    background: hsl(var(--risk-low) / 0.15);
+    color: hsl(var(--risk-low));
+    border: 1px solid hsl(var(--risk-low) / 0.3);
+  }
+  .risk-badge-intel {
+    @apply inline-flex items-center gap-1 rounded-full px-2 py-0.5 text-xs font-semibold;
+    background: hsl(var(--intelligence) / 0.15);
+    color: hsl(var(--intelligence));
+    border: 1px solid hsl(var(--intelligence) / 0.3);
+  }
+  .gis-control-panel {
+    @apply absolute z-10 rounded-lg border bg-card/90 p-3 backdrop-blur-md;
+    box-shadow: var(--shadow-elevated);
+  }
+  .nav-item-active {
+    background: hsl(var(--primary) / 0.15);
+    color: hsl(var(--primary));
+    border-left: 2px solid hsl(var(--primary));
+  }
+  .data-table-row {
+    @apply border-b border-border/50 transition-colors hover:bg-muted/30;
+  }
+  .pulse-dot {
+    @apply relative inline-flex h-2.5 w-2.5;
+  }
+  .pulse-dot::before {
+    content: '';
+    @apply absolute inline-flex h-full w-full rounded-full opacity-75 animate-ping;
+    background: hsl(var(--risk-low));
+  }
+  .pulse-dot::after {
+    content: '';
+    @apply relative inline-flex h-2.5 w-2.5 rounded-full;
+    background: hsl(var(--risk-low));
   }
 }
