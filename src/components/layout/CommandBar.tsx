@@ -23,7 +23,7 @@ export function CommandBar() {
       <div className="flex items-center gap-3">
         <Shield className="h-4 w-4" style={{ color: "hsl(var(--accent))" }} />
         <h1 className="text-sm font-semibold text-foreground">{moduleLabels[activeModule]}</h1>
-        <span className="text-muted-foreground text-xs hidden sm:block">/ Kerala Police Digital Intelligence Platform</span>
+        <span className="text-muted-foreground text-xs hidden sm:block">/ Tamilnadu Police Digital Intelligence Platform</span>
       </div>
 
       <div className="flex items-center gap-3">
