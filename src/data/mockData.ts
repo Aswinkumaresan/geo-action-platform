@@ -8,23 +8,23 @@ export const kpiData = [
 ];
 
 export const recentCases = [
-  { id: "CS-2024-1831", district: "Thiruvananthapuram", unit: "STF", type: "NDPS", severity: "high", status: "Active", accused: "Rajan K.", seizure: "4.2 kg Cannabis" },
-  { id: "CS-2024-1830", district: "Ernakulam", unit: "District", type: "Excise", severity: "medium", status: "Under Investigation", accused: "Pradeep M.", seizure: "120 L Arrack" },
-  { id: "CS-2024-1829", district: "Kozhikode", unit: "CIU", type: "NDPS", severity: "high", status: "Chargesheeted", accused: "Suresh V.", seizure: "850g Heroin" },
-  { id: "CS-2024-1828", district: "Thrissur", unit: "Anti-Narcotics", type: "NDPS", severity: "low", status: "Closed", accused: "Anwar S.", seizure: "22 tablets" },
-  { id: "CS-2024-1827", district: "Palakkad", unit: "District", type: "Smuggling", severity: "medium", status: "Active", accused: "Krishnan P.", seizure: "Counterfeit goods" },
-  { id: "CS-2024-1826", district: "Malappuram", unit: "CIU", type: "NDPS", severity: "high", status: "Active", accused: "Hameed A.", seizure: "1.2 kg Ganja" },
+  { id: "CS-2024-1831", district: "Chennai", unit: "STF", type: "NDPS", severity: "high", status: "Active", accused: "Murugan K.", seizure: "4.2 kg Cannabis" },
+  { id: "CS-2024-1830", district: "Coimbatore", unit: "District", type: "Excise", severity: "medium", status: "Under Investigation", accused: "Selvam M.", seizure: "120 L Arrack" },
+  { id: "CS-2024-1829", district: "Madurai", unit: "CIU", type: "NDPS", severity: "high", status: "Chargesheeted", accused: "Velan S.", seizure: "850g Heroin" },
+  { id: "CS-2024-1828", district: "Tiruchirappalli", unit: "Anti-Narcotics", type: "NDPS", severity: "low", status: "Closed", accused: "Anbu R.", seizure: "22 tablets" },
+  { id: "CS-2024-1827", district: "Salem", unit: "District", type: "Smuggling", severity: "medium", status: "Active", accused: "Kumaran P.", seizure: "Counterfeit goods" },
+  { id: "CS-2024-1826", district: "Tirunelveli", unit: "CIU", type: "NDPS", severity: "high", status: "Active", accused: "Durai A.", seizure: "1.2 kg Ganja" },
 ];
 
 export const districtRisk = [
-  { district: "Thiruvananthapuram", score: 87, cases: 234, trend: "up" },
-  { district: "Ernakulam", score: 72, cases: 198, trend: "up" },
-  { district: "Kozhikode", score: 65, cases: 156, trend: "stable" },
-  { district: "Thrissur", score: 58, cases: 134, trend: "down" },
-  { district: "Malappuram", score: 79, cases: 178, trend: "up" },
-  { district: "Palakkad", score: 45, cases: 98, trend: "down" },
-  { district: "Kannur", score: 61, cases: 142, trend: "stable" },
-  { district: "Wayanad", score: 71, cases: 89, trend: "up" },
+  { district: "Chennai", score: 87, cases: 234, trend: "up" },
+  { district: "Coimbatore", score: 72, cases: 198, trend: "up" },
+  { district: "Madurai", score: 65, cases: 156, trend: "stable" },
+  { district: "Tiruchirappalli", score: 58, cases: 134, trend: "down" },
+  { district: "Tirunelveli", score: 79, cases: 178, trend: "up" },
+  { district: "Salem", score: 45, cases: 98, trend: "down" },
+  { district: "Erode", score: 61, cases: 142, trend: "stable" },
+  { district: "Thanjavur", score: 71, cases: 89, trend: "up" },
 ];
 
 export const trendData = [
@@ -46,38 +46,38 @@ export const offenceBreakdown = [
 ];
 
 export const checkpostData = [
-  { name: "Walayar", district: "Palakkad", status: "active", vehicles: 342, alerts: 3 },
-  { name: "Talapady", district: "Kasaragod", status: "active", vehicles: 218, alerts: 1 },
-  { name: "Muzhikkunnu", district: "Kannur", status: "active", vehicles: 189, alerts: 0 },
-  { name: "Nilambur", district: "Malappuram", status: "active", vehicles: 276, alerts: 5 },
-  { name: "Aralam", district: "Kannur", status: "maintenance", vehicles: 0, alerts: 0 },
-  { name: "Thrissur Bypass", district: "Thrissur", status: "active", vehicles: 411, alerts: 2 },
+  { name: "Walajapet", district: "Ranipet", status: "active", vehicles: 342, alerts: 3 },
+  { name: "Hosur", district: "Krishnagiri", status: "active", vehicles: 218, alerts: 1 },
+  { name: "Kaliyakkavilai", district: "Kanyakumari", status: "active", vehicles: 189, alerts: 0 },
+  { name: "Meenakshipuram", district: "Theni", status: "active", vehicles: 276, alerts: 5 },
+  { name: "Topslip", district: "Coimbatore", status: "maintenance", vehicles: 0, alerts: 0 },
+  { name: "Vaniyambadi", district: "Tirupattur", status: "active", vehicles: 411, alerts: 2 },
 ];
 
 export const auditLogs = [
   { id: 1, user: "SP Ramesh Kumar", action: "Approved Intel Report", module: "Intelligence", ip: "10.0.1.45", time: "2025-02-26 14:32" },
-  { id: 2, user: "DSP Anitha Nair", action: "Created DSR Entry", module: "DSR", ip: "10.0.2.12", time: "2025-02-26 14:18" },
-  { id: 3, user: "CI Suresh Babu", action: "Updated Case Status", module: "Case Mgmt", ip: "10.0.3.78", time: "2025-02-26 13:55" },
-  { id: 4, user: "Admin Priya", action: "Created User Account", module: "Admin", ip: "10.0.1.10", time: "2025-02-26 13:40" },
-  { id: 5, user: "DIG Krishnan", action: "Exported PDF Report", module: "Reports", ip: "10.0.4.22", time: "2025-02-26 13:22" },
-  { id: 6, user: "CIU Officer Hameed", action: "Added Accused Profile", module: "Intelligence", ip: "10.0.5.33", time: "2025-02-26 13:10" },
+  { id: 2, user: "DSP Kavitha Devi", action: "Created DSR Entry", module: "DSR", ip: "10.0.2.12", time: "2025-02-26 14:18" },
+  { id: 3, user: "CI Senthil Murugan", action: "Updated Case Status", module: "Case Mgmt", ip: "10.0.3.78", time: "2025-02-26 13:55" },
+  { id: 4, user: "Admin Lakshmi", action: "Created User Account", module: "Admin", ip: "10.0.1.10", time: "2025-02-26 13:40" },
+  { id: 5, user: "DIG Pandian", action: "Exported PDF Report", module: "Reports", ip: "10.0.4.22", time: "2025-02-26 13:22" },
+  { id: 6, user: "CIU Officer Karthik", action: "Added Accused Profile", module: "Intelligence", ip: "10.0.5.33", time: "2025-02-26 13:10" },
 ];
 
 export const intelligenceProfiles = [
-  { id: "ACC-001", name: "Rajan Krishnan", age: 38, district: "Thiruvananthapuram", risk: "high", cases: 4, status: "Active", associates: 6 },
-  { id: "ACC-002", name: "Mohammed Hameed", age: 44, district: "Malappuram", risk: "high", cases: 7, status: "Active", associates: 12 },
-  { id: "ACC-003", name: "Suresh Varma", age: 29, district: "Kozhikode", risk: "medium", cases: 2, status: "Absconding", associates: 3 },
-  { id: "ACC-004", name: "Anwar Sadique", age: 35, district: "Thrissur", risk: "medium", cases: 3, status: "Arrested", associates: 5 },
-  { id: "ACC-005", name: "Pradeep Menon", age: 51, district: "Ernakulam", risk: "low", cases: 1, status: "Released on Bail", associates: 2 },
+  { id: "ACC-001", name: "Murugan Thevar", age: 38, district: "Chennai", risk: "high", cases: 4, status: "Active", associates: 6 },
+  { id: "ACC-002", name: "Durai Singam", age: 44, district: "Madurai", risk: "high", cases: 7, status: "Active", associates: 12 },
+  { id: "ACC-003", name: "Velan Raju", age: 29, district: "Coimbatore", risk: "medium", cases: 2, status: "Absconding", associates: 3 },
+  { id: "ACC-004", name: "Anbu Selvan", age: 35, district: "Tiruchirappalli", risk: "medium", cases: 3, status: "Arrested", associates: 5 },
+  { id: "ACC-005", name: "Kumaran Pillai", age: 51, district: "Salem", risk: "low", cases: 1, status: "Released on Bail", associates: 2 },
 ];
 
 export const mapMarkers = [
-  { id: 1, lat: 8.5241, lng: 76.9366, type: "NDPS", severity: "high", district: "Thiruvananthapuram", label: "CS-2024-1831" },
-  { id: 2, lat: 9.9312, lng: 76.2673, type: "Excise", severity: "medium", district: "Ernakulam", label: "CS-2024-1830" },
-  { id: 3, lat: 11.2588, lng: 75.7804, type: "NDPS", severity: "high", district: "Kozhikode", label: "CS-2024-1829" },
-  { id: 4, lat: 10.5276, lng: 76.2144, type: "NDPS", severity: "low", district: "Thrissur", label: "CS-2024-1828" },
-  { id: 5, lat: 10.7867, lng: 76.6548, type: "Smuggling", severity: "medium", district: "Palakkad", label: "CS-2024-1827" },
-  { id: 6, lat: 11.0510, lng: 76.0711, type: "NDPS", severity: "high", district: "Malappuram", label: "CS-2024-1826" },
-  { id: 7, lat: 11.8745, lng: 75.3704, type: "Excise", severity: "medium", district: "Kannur", label: "CS-2024-1825" },
-  { id: 8, lat: 11.6854, lng: 76.1320, type: "NDPS", severity: "high", district: "Wayanad", label: "CS-2024-1824" },
+  { id: 1, lat: 13.0827, lng: 80.2707, type: "NDPS", severity: "high", district: "Chennai", label: "CS-2024-1831" },
+  { id: 2, lat: 11.0168, lng: 76.9558, type: "Excise", severity: "medium", district: "Coimbatore", label: "CS-2024-1830" },
+  { id: 3, lat: 9.9252, lng: 78.1198, type: "NDPS", severity: "high", district: "Madurai", label: "CS-2024-1829" },
+  { id: 4, lat: 10.7905, lng: 78.7047, type: "NDPS", severity: "low", district: "Tiruchirappalli", label: "CS-2024-1828" },
+  { id: 5, lat: 11.6643, lng: 78.1460, type: "Smuggling", severity: "medium", district: "Salem", label: "CS-2024-1827" },
+  { id: 6, lat: 8.7139, lng: 77.7567, type: "NDPS", severity: "high", district: "Tirunelveli", label: "CS-2024-1826" },
+  { id: 7, lat: 11.3410, lng: 77.7172, type: "Excise", severity: "medium", district: "Erode", label: "CS-2024-1825" },
+  { id: 8, lat: 10.7870, lng: 79.1378, type: "NDPS", severity: "high", district: "Thanjavur", label: "CS-2024-1824" },
 ];
