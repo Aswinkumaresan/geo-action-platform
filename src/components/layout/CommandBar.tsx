@@ -3,7 +3,7 @@ import { useAppStore } from "@/store/appStore";
 import { Badge } from "@/components/ui/badge";
 
 const moduleLabels: Record<string, string> = {
-  dashboard: "Command Dashboard",
+  dashboard: "PEW Dashboard",
   gis: "GIS Intelligence Map",
   dsr: "Daily Situation Report",
   intelligence: "Intelligence Module",
