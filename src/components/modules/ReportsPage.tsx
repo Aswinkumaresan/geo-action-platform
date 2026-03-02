@@ -35,8 +35,8 @@ export function ReportsPage() {
             <select className="w-full rounded-md border px-2 py-1.5 text-xs bg-muted focus:outline-none" style={{ borderColor: "hsl(var(--border))" }}>
               <option>All Types</option>
               <option>NDPS</option>
-              <option>Excise</option>
-              <option>Smuggling</option>
+              <option>CRIME</option>
+              <option>PEW</option>
             </select>
           </div>
           <div>

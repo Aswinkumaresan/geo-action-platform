@@ -38,11 +38,9 @@ export const trendData = [
 ];
 
 export const offenceBreakdown = [
-  { type: "NDPS", count: 445, pct: 36 },
-  { type: "Excise", count: 312, pct: 25 },
-  { type: "Smuggling", count: 187, pct: 15 },
-  { type: "Counterfeit", count: 124, pct: 10 },
-  { type: "Others", count: 179, pct: 14 },
+  { type: "NDPS", count: 445, pct: 42 },
+  { type: "CRIME", count: 387, pct: 36 },
+  { type: "PEW", count: 235, pct: 22 },
 ];
 
 export const checkpostData = [

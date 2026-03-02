@@ -14,11 +14,8 @@ const forecastData = [
 
 const radarData = [
   { subject: "NDPS", A: 85, fullMark: 100 },
-  { subject: "Excise", A: 60, fullMark: 100 },
-  { subject: "Border", A: 70, fullMark: 100 },
-  { subject: "Smuggling", A: 45, fullMark: 100 },
-  { subject: "Cyber", A: 30, fullMark: 100 },
-  { subject: "Counterfeit", A: 55, fullMark: 100 },
+  { subject: "CRIME", A: 70, fullMark: 100 },
+  { subject: "PEW", A: 60, fullMark: 100 },
 ];
 
 const anomalies = [
