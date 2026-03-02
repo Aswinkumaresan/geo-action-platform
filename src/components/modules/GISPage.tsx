@@ -30,7 +30,7 @@ export function GISPage() {
       });
 
       const map = L.map(mapRef.current!, {
-        center: [10.5, 76.5],
+        center: [11.0, 78.5],
         zoom: 7,
         zoomControl: false,
       });
