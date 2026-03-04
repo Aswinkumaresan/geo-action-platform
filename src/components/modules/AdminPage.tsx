@@ -8,11 +8,11 @@ import {
 // ─── DATA ────────────────────────────────────────────────────────────────────
 
 const users = [
-  { id: 1, name: "Rajesh Kumar",  role: "State Super Admin",  district: "All",      unit: "HQ",             status: "Active",   lastLogin: "2026-03-02 14:30" },
-  { id: 2, name: "Priya Sharma",  role: "District Admin",     district: "Jaipur",   unit: "Anti-Narcotics", status: "Active",   lastLogin: "2026-03-02 09:15" },
-  { id: 3, name: "Amit Singh",    role: "PEW Officer",        district: "Jodhpur",  unit: "Checkpost",      status: "Active",   lastLogin: "2026-03-01 18:42" },
-  { id: 4, name: "Sunita Meena",  role: "CIU Personnel",      district: "Udaipur",  unit: "Intelligence",   status: "Disabled", lastLogin: "2026-02-15 11:20" },
-  { id: 5, name: "Vikram Rathore",role: "NIBCID Personnel",   district: "Kota",     unit: "Enforcement",    status: "Active",   lastLogin: "2026-03-02 16:05" },
+  { id: 1, name: "Rajesh Kumar",  role: "State Super Admin",  district: "All",        unit: "HQ",             status: "Active",   lastLogin: "2026-03-02 14:30" },
+  { id: 2, name: "Priya Sharma",  role: "District Admin",     district: "Chennai",    unit: "Anti-Narcotics", status: "Active",   lastLogin: "2026-03-02 09:15" },
+  { id: 3, name: "Amit Singh",    role: "PEW Officer",        district: "Coimbatore", unit: "Checkpost",      status: "Active",   lastLogin: "2026-03-01 18:42" },
+  { id: 4, name: "Sunita Meena",  role: "CIU Personnel",      district: "Madurai",    unit: "Intelligence",   status: "Disabled", lastLogin: "2026-02-15 11:20" },
+  { id: 5, name: "Vikram Rathore",role: "NIBCID Personnel",   district: "Salem",      unit: "Enforcement",    status: "Active",   lastLogin: "2026-03-02 16:05" },
 ];
 
 const roles = ["State Super Admin", "District Admin", "PEW Officer", "CIU Personnel", "NIBCID Personnel"];
@@ -61,11 +61,16 @@ const rolePermissions: Record<string, Record<string, string[]>> = {
 };
 
 const districts = [
-  { code: "JPR", name: "Jaipur",   zone: "East",      status: "Active", units: 5 },
-  { code: "JDH", name: "Jodhpur",  zone: "West",      status: "Active", units: 4 },
-  { code: "UDR", name: "Udaipur",  zone: "South",     status: "Active", units: 3 },
-  { code: "KTA", name: "Kota",     zone: "South-East",status: "Active", units: 4 },
-  { code: "AJM", name: "Ajmer",    zone: "Central",   status: "Active", units: 3 },
+  { code: "CHN", name: "Chennai",          zone: "North",       status: "Active", units: 8 },
+  { code: "CBE", name: "Coimbatore",       zone: "West",        status: "Active", units: 6 },
+  { code: "MDU", name: "Madurai",          zone: "South",       status: "Active", units: 5 },
+  { code: "TRY", name: "Tiruchirappalli",  zone: "Central",     status: "Active", units: 5 },
+  { code: "TEN", name: "Tirunelveli",      zone: "South",       status: "Active", units: 4 },
+  { code: "SLM", name: "Salem",            zone: "North-West",  status: "Active", units: 4 },
+  { code: "ERD", name: "Erode",            zone: "West",        status: "Active", units: 3 },
+  { code: "TNJ", name: "Thanjavur",        zone: "East",        status: "Active", units: 3 },
+  { code: "VLR", name: "Vellore",          zone: "North",       status: "Active", units: 3 },
+  { code: "KRG", name: "Krishnagiri",      zone: "North-West",  status: "Active", units: 3 },
 ];
 
 const otpPersonnel = [
