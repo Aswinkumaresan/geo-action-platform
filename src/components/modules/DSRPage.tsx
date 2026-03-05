@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Search, FileText, FileSpreadsheet, Plus } from "lucide-react";
+import { Search, FileText, FileSpreadsheet, Plus, Save } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { DSRNewEntryForm } from "./DSRNewEntryForm";
 import { DSRPEWForm } from "./DSRPEWForm";
@@ -70,6 +70,144 @@ const helplineStatusColor: Record<string, string> = {
   Pending:       "bg-red-500 text-white",
   "Under Review":"bg-muted text-muted-foreground",
 };
+
+// ── Checkpost Seizures Form ───────────────────────────────────────────────────
+type CheckpostRow = {
+  id: number; district: string; checkpostName: string;
+  s1Si: string; s1Ors: string; s2Si: string; s2Ors: string; s3Si: string; s3Ors: string;
+  cases: string; accused: string;
+  paCase: string; paLtrs: string; paAcc: string;
+  apIdCase: string; apIdLtrs: string; apIdAcc: string;
+  apImflCase: string; apImflLtrs: string;
+};
+
+const emptyRow = (id: number): CheckpostRow => ({
+  id, district: "", checkpostName: "",
+  s1Si: "", s1Ors: "", s2Si: "", s2Ors: "", s3Si: "", s3Ors: "",
+  cases: "", accused: "",
+  paCase: "", paLtrs: "", paAcc: "",
+  apIdCase: "", apIdLtrs: "", apIdAcc: "",
+  apImflCase: "", apImflLtrs: "",
+});
+
+const tnDistricts = [
+  "Chennai","Coimbatore","Madurai","Tiruchirappalli","Salem","Tirunelveli",
+  "Erode","Vellore","Thoothukudi","Dindigul","Thanjavur","Ranipet",
+  "Sivaganga","Karur","Namakkal","Kancheepuram","Tiruvannamalai",
+];
+
+function CheckpostSeizuresForm() {
+  const today = new Date().toISOString().split("T")[0];
+  const [reportDate, setReportDate] = useState(today);
+  const [rows, setRows] = useState<CheckpostRow[]>([emptyRow(1)]);
+
+  const updateRow = (id: number, field: keyof CheckpostRow, value: string) =>
+    setRows(prev => prev.map(r => r.id === id ? { ...r, [field]: value } : r));
+
+  const addRow = () => setRows(prev => [...prev, emptyRow(prev.length + 1)]);
+
+  const sumField = (field: keyof CheckpostRow) =>
+    rows.reduce((acc, r) => acc + (parseInt(r[field] as string) || 0), 0);
+
+  const cellCls = "border px-1.5 py-1 text-xs text-center w-12 focus:outline-none focus:ring-1 focus:ring-primary bg-background";
+  const thCls = "border px-2 py-2 text-xs font-semibold text-foreground text-center";
+
+  return (
+    <div className="space-y-4">
+      {/* Date + Actions */}
+      <div className="flex items-end justify-between rounded-lg border p-4" style={{ borderColor: "hsl(var(--border))" }}>
+        <div>
+          <label className="text-xs font-medium text-muted-foreground mb-1.5 block">Report Date</label>
+          <input
+            type="date"
+            value={reportDate}
+            onChange={e => setReportDate(e.target.value)}
+            className="rounded-md border px-3 py-2 text-sm bg-background focus:outline-none focus:ring-1 focus:ring-primary"
+            style={{ borderColor: "hsl(var(--border))" }}
+          />
+        </div>
+        <div className="flex items-center gap-3">
+          <button className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium border transition-colors hover:bg-muted" style={{ borderColor: "hsl(var(--border))" }}>
+            <FileSpreadsheet className="h-4 w-4" /> Export Excel
+          </button>
+          <button className="flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-semibold" style={{ background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}>
+            <Save className="h-4 w-4" /> Save DSR
+          </button>
+        </div>
+      </div>
+
+      {/* Table */}
+      <div className="rounded-lg border overflow-x-auto" style={{ borderColor: "hsl(var(--border))" }}>
+        <div className="px-4 py-3 border-b text-sm font-semibold" style={{ borderColor: "hsl(var(--border))" }}>
+          Prohibition Checkpost Performance Details on {reportDate.split("-").reverse().join("/")}
+        </div>
+        <table className="text-xs border-collapse w-full min-w-[900px]">
+          <thead>
+            <tr className="border-b" style={{ borderColor: "hsl(var(--border))" }}>
+              <th className={`${thCls} w-10`} rowSpan={2}>S.No</th>
+              <th className={`${thCls} w-28`} rowSpan={2}>Dist./City</th>
+              <th className={`${thCls} w-32`} rowSpan={2}>Checkpost Name</th>
+              <th className={`${thCls}`} colSpan={2}>Shift 1</th>
+              <th className={`${thCls}`} colSpan={2}>Shift 2</th>
+              <th className={`${thCls}`} colSpan={2}>Shift 3</th>
+              <th className={`${thCls} w-12`} rowSpan={2}>Cases</th>
+              <th className={`${thCls} w-14`} rowSpan={2}>Accused</th>
+              <th className={`${thCls}`} colSpan={3}>Pondy Arrack</th>
+              <th className={`${thCls}`} colSpan={3}>AP ID Arrack</th>
+              <th className={`${thCls}`} colSpan={2}>AP IMFL</th>
+            </tr>
+            <tr className="border-b" style={{ borderColor: "hsl(var(--border))" }}>
+              {["SI","ORS","SI","ORS","SI","ORS"].map((h, i) => <th key={i} className={thCls}>{h}</th>)}
+              {["Case","Ltrs","Acc","Case","Ltrs","Acc","Case","Ltrs"].map((h, i) => <th key={i} className={thCls}>{h}</th>)}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row, idx) => (
+              <tr key={row.id} className="border-b hover:bg-muted/20" style={{ borderColor: "hsl(var(--border))" }}>
+                <td className="border px-2 py-1.5 text-center text-xs font-medium" style={{ borderColor: "hsl(var(--border))" }}>{idx + 1}</td>
+                <td className="border px-1" style={{ borderColor: "hsl(var(--border))" }}>
+                  <select value={row.district} onChange={e => updateRow(row.id, "district", e.target.value)}
+                    className="w-full text-xs py-1 bg-background focus:outline-none">
+                    <option value="">-</option>
+                    {tnDistricts.map(d => <option key={d} value={d}>{d}</option>)}
+                  </select>
+                </td>
+                <td className="border px-1" style={{ borderColor: "hsl(var(--border))" }}>
+                  <input value={row.checkpostName} onChange={e => updateRow(row.id, "checkpostName", e.target.value)}
+                    placeholder="Checkpost" className="w-full text-xs py-1 px-1 bg-background focus:outline-none" />
+                </td>
+                {(["s1Si","s1Ors","s2Si","s2Ors","s3Si","s3Ors","cases","accused","paCase","paLtrs","paAcc","apIdCase","apIdLtrs","apIdAcc","apImflCase","apImflLtrs"] as (keyof CheckpostRow)[]).map(f => (
+                  <td key={f} className="border" style={{ borderColor: "hsl(var(--border))" }}>
+                    <input type="number" min="0" value={row[f] as string}
+                      onChange={e => updateRow(row.id, f, e.target.value)}
+                      className={cellCls} />
+                  </td>
+                ))}
+              </tr>
+            ))}
+            {/* Totals row */}
+            <tr className="font-semibold bg-muted/30">
+              <td colSpan={3} className="border px-3 py-2 text-right text-xs" style={{ borderColor: "hsl(var(--border))" }}>Total</td>
+              {(["s1Si","s1Ors","s2Si","s2Ors","s3Si","s3Ors","cases","accused","paCase","paLtrs","paAcc","apIdCase","apIdLtrs","apIdAcc","apImflCase","apImflLtrs"] as (keyof CheckpostRow)[]).map(f => (
+                <td key={f} className="border text-center text-xs py-2" style={{ borderColor: "hsl(var(--border))" }}>{sumField(f) || 0}</td>
+              ))}
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      {/* Footer actions */}
+      <div className="flex items-center justify-between">
+        <button onClick={addRow} className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium border hover:bg-muted transition-colors" style={{ borderColor: "hsl(var(--border))" }}>
+          <Plus className="h-4 w-4" /> Add Checkpost Row
+        </button>
+        <button className="flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-semibold" style={{ background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}>
+          <Save className="h-4 w-4" /> Save All Entries
+        </button>
+      </div>
+    </div>
+  );
+}
 
 const topTabs = ["DSR Cases", "PEW", "NDPS"];
 
@@ -368,18 +506,23 @@ export function DSRPage() {
                 </>
               )}
 
-              {/* ── Default / Other Tabs ── */}
-              {!["BL Goondas Entry","Bandobust Details","Vehicle Disposal","Solvent Inspections","Helpline Calls"].includes(activeTab) && (
+              {/* ── Checkpost Seizures ── */}
+              {activeTab === "Checkpost Seizures" && (
+                <CheckpostSeizuresForm />
+              )}
+
+              {/* ── WhatsApp Calls ── */}
+              {activeTab === "WhatsApp Calls" && (
                 <>
-                  <h3 className="text-sm font-semibold text-foreground mb-4">{activeTab}</h3>
+                  <h3 className="text-sm font-semibold text-foreground mb-4">WhatsApp Calls</h3>
                   <table className="w-full text-sm">
                     <thead><tr className="border-b" style={{ borderColor: "hsl(var(--border))" }}>
-                      {["Case ID","Date","District","Unit","Checkpost","Offence Type","Contraband","Status"].map(col => (
+                      {["Time","Caller","Summary","Assigned","Status"].map(col => (
                         <th key={col} className="text-left py-3 px-3 text-muted-foreground font-medium text-xs">{col}</th>
                       ))}
                     </tr></thead>
                     <tbody>
-                      <tr><td colSpan={8} className="text-center py-12 text-muted-foreground text-sm">No records found. Click "New Entry" to add a case.</td></tr>
+                      <tr><td colSpan={5} className="text-center py-12 text-muted-foreground text-sm">No records found.</td></tr>
                     </tbody>
                   </table>
                 </>
