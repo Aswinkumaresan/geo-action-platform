@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const zones = ["North Zone", "South Zone", "East Zone", "West Zone", "Central Zone"];
+const zones = ["Chennai Zone", "Madurai Zone"];
 
 const substances = [
   { label: "Ganja", unit: "Kgs" },
