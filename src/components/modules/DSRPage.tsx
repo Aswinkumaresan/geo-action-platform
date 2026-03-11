@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { DSRNewEntryForm } from "./DSRNewEntryForm";
 import { DSRPEWForm } from "./DSRPEWForm";
 import { DSRNDPSForm } from "./DSRNDPSForm";
+import { DSRPEWEntryForm } from "./DSRPEWEntryForm";
 
 // ── BL Goondas ────────────────────────────────────────────────────────────────
 const goondasData = [
@@ -236,6 +237,7 @@ export function DSRPage() {
   const [districtFilter, setDistrictFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   const [showNewEntry, setShowNewEntry] = useState(false);
+  const [showPEWEntry, setShowPEWEntry] = useState(false);
 
   return (
     <div className="flex-1 overflow-y-auto p-6">
@@ -534,7 +536,20 @@ export function DSRPage() {
       )}
 
       {/* PEW Tab Content */}
-      {topTab === "PEW" && <DSRPEWForm />}
+      {topTab === "PEW" && (
+        <>
+          <div className="flex items-center justify-end mb-4">
+            <button
+              onClick={() => setShowPEWEntry(true)}
+              className="flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-semibold"
+              style={{ background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}
+            >
+              <Plus className="h-4 w-4" /> Add PEW Entry
+            </button>
+          </div>
+          <DSRPEWForm />
+        </>
+      )}
 
       {/* NDPS Tab Content */}
       {topTab === "NDPS" && <DSRNDPSForm />}
@@ -546,6 +561,13 @@ export function DSRPage() {
             <DialogTitle className="text-lg font-bold">New DSR Case Entry</DialogTitle>
           </DialogHeader>
           <DSRNewEntryForm onClose={() => setShowNewEntry(false)} />
+        </DialogContent>
+      </Dialog>
+
+      {/* PEW Entry Dialog */}
+      <Dialog open={showPEWEntry} onOpenChange={setShowPEWEntry}>
+        <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto">
+          <DSRPEWEntryForm onClose={() => setShowPEWEntry(false)} />
         </DialogContent>
       </Dialog>
     </div>
