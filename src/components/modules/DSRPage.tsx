@@ -4,6 +4,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/u
 import { DSRNewEntryForm } from "./DSRNewEntryForm";
 import { DSRPEWForm } from "./DSRPEWForm";
 import { DSRNDPSForm } from "./DSRNDPSForm";
+import { DSRPEWEntryForm } from "./DSRPEWEntryForm";
 
 // ── BL Goondas ────────────────────────────────────────────────────────────────
 const goondasData = [
