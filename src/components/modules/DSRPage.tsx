@@ -563,6 +563,13 @@ export function DSRPage() {
           <DSRNewEntryForm onClose={() => setShowNewEntry(false)} />
         </DialogContent>
       </Dialog>
+
+      {/* PEW Entry Dialog */}
+      <Dialog open={showPEWEntry} onOpenChange={setShowPEWEntry}>
+        <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto">
+          <DSRPEWEntryForm onClose={() => setShowPEWEntry(false)} />
+        </DialogContent>
+      </Dialog>
     </div>
   );
 }
