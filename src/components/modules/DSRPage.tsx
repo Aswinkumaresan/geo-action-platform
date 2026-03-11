@@ -536,7 +536,20 @@ export function DSRPage() {
       )}
 
       {/* PEW Tab Content */}
-      {topTab === "PEW" && <DSRPEWForm />}
+      {topTab === "PEW" && (
+        <>
+          <div className="flex items-center justify-end mb-4">
+            <button
+              onClick={() => setShowPEWEntry(true)}
+              className="flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-semibold"
+              style={{ background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}
+            >
+              <Plus className="h-4 w-4" /> Add PEW Entry
+            </button>
+          </div>
+          <DSRPEWForm />
+        </>
+      )}
 
       {/* NDPS Tab Content */}
       {topTab === "NDPS" && <DSRNDPSForm />}
