@@ -237,6 +237,7 @@ export function DSRPage() {
   const [districtFilter, setDistrictFilter] = useState("");
   const [statusFilter, setStatusFilter] = useState("");
   const [showNewEntry, setShowNewEntry] = useState(false);
+  const [showPEWEntry, setShowPEWEntry] = useState(false);
 
   return (
     <div className="flex-1 overflow-y-auto p-6">
