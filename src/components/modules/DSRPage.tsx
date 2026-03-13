@@ -5,6 +5,7 @@ import { DSRNewEntryForm } from "./DSRNewEntryForm";
 import { DSRPEWForm } from "./DSRPEWForm";
 import { DSRNDPSForm } from "./DSRNDPSForm";
 import { DSRPEWEntryForm } from "./DSRPEWEntryForm";
+import { DSRNDPSEntryForm } from "./DSRNDPSEntryForm";
 
 // ── BL Goondas ────────────────────────────────────────────────────────────────
 const goondasData = [
@@ -238,6 +239,7 @@ export function DSRPage() {
   const [statusFilter, setStatusFilter] = useState("");
   const [showNewEntry, setShowNewEntry] = useState(false);
   const [showPEWEntry, setShowPEWEntry] = useState(false);
+  const [showNDPSEntry, setShowNDPSEntry] = useState(false);
 
   return (
     <div className="flex-1 overflow-y-auto p-6">
@@ -552,7 +554,20 @@ export function DSRPage() {
       )}
 
       {/* NDPS Tab Content */}
-      {topTab === "NDPS" && <DSRNDPSForm />}
+      {topTab === "NDPS" && (
+        <>
+          <div className="flex items-center justify-end mb-4">
+            <button
+              onClick={() => setShowNDPSEntry(true)}
+              className="flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-semibold"
+              style={{ background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}
+            >
+              <Plus className="h-4 w-4" /> Add NDPS Entry
+            </button>
+          </div>
+          <DSRNDPSForm />
+        </>
+      )}
 
       {/* New Entry Dialog */}
       <Dialog open={showNewEntry} onOpenChange={setShowNewEntry}>
@@ -568,6 +583,13 @@ export function DSRPage() {
       <Dialog open={showPEWEntry} onOpenChange={setShowPEWEntry}>
         <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto">
           <DSRPEWEntryForm onClose={() => setShowPEWEntry(false)} />
+        </DialogContent>
+      </Dialog>
+
+      {/* NDPS Entry Dialog */}
+      <Dialog open={showNDPSEntry} onOpenChange={setShowNDPSEntry}>
+        <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto">
+          <DSRNDPSEntryForm onClose={() => setShowNDPSEntry(false)} />
         </DialogContent>
       </Dialog>
     </div>
