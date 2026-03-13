@@ -5,6 +5,7 @@ import { DSRNewEntryForm } from "./DSRNewEntryForm";
 import { DSRPEWForm } from "./DSRPEWForm";
 import { DSRNDPSForm } from "./DSRNDPSForm";
 import { DSRPEWEntryForm } from "./DSRPEWEntryForm";
+import { DSRNDPSEntryForm } from "./DSRNDPSEntryForm";
 
 // ── BL Goondas ────────────────────────────────────────────────────────────────
 const goondasData = [
