@@ -239,6 +239,7 @@ export function DSRPage() {
   const [statusFilter, setStatusFilter] = useState("");
   const [showNewEntry, setShowNewEntry] = useState(false);
   const [showPEWEntry, setShowPEWEntry] = useState(false);
+  const [showNDPSEntry, setShowNDPSEntry] = useState(false);
 
   return (
     <div className="flex-1 overflow-y-auto p-6">
