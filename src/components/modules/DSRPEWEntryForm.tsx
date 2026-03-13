@@ -1,5 +1,6 @@
 import { useState } from "react";
-import { Plus, ArrowLeft, Calendar } from "lucide-react";
+import { Plus, ArrowLeft } from "lucide-react";
+import { AccusedDetailsSection, AccusedData, defaultAccusedData } from "./AccusedDetailsSection";
 
 const zones = ["Chennai Zone", "Madurai Zone"];
 const tnDistricts = [
@@ -26,10 +27,11 @@ const seizureCategories = [
 
 type CoAccused = { name: string; age: string; address: string };
 
-const steps = ["DSR/Case Details", "Seizure Details", "Arrest Details", "Court Hearing", "Jail", "Monitoring"];
+const steps = ["Accused Details", "Seizure Details", "Arrest Details", "Court Hearing", "Jail", "Monitoring"];
 
 export function DSRPEWEntryForm({ onClose }: { onClose: () => void }) {
   const [activeStep, setActiveStep] = useState(0);
+  const [accusedData, setAccusedData] = useState<AccusedData>(defaultAccusedData);
 
   // Case details
   const [caseId] = useState("DSR-MMM3LAG5-ZA0H");
@@ -37,9 +39,6 @@ export function DSRPEWEntryForm({ onClose }: { onClose: () => void }) {
   const [dateOfSeizure, setDateOfSeizure] = useState("");
   const [crimeNo, setCrimeNo] = useState("");
   const [section, setSection] = useState("");
-  const [accusedName, setAccusedName] = useState("");
-  const [fatherName, setFatherName] = useState("");
-  const [address, setAddress] = useState("");
   const [offence, setOffence] = useState("");
 
   // Seizure table
@@ -102,13 +101,12 @@ export function DSRPEWEntryForm({ onClose }: { onClose: () => void }) {
   const sectionCls = "rounded-lg border p-5 space-y-4";
 
   const handleSave = () => {
-    console.log("PEW Entry Saved");
     onClose();
   };
 
   return (
     <div className="space-y-5">
-      {/* Header with back + case ID */}
+      {/* Header */}
       <div className="flex items-center gap-3 mb-2">
         <button onClick={onClose} className="p-1.5 rounded-lg hover:bg-muted transition-colors">
           <ArrowLeft className="h-4 w-4 text-muted-foreground" />
@@ -139,8 +137,31 @@ export function DSRPEWEntryForm({ onClose }: { onClose: () => void }) {
         ))}
       </div>
 
-      {/* Step 0: DSR/Case & Seizure Details */}
+      {/* ── STEP 0: Accused Details ── */}
       {activeStep === 0 && (
+        <div className="space-y-5">
+          <h3 className="text-sm font-bold text-foreground">Accused Details</h3>
+          <AccusedDetailsSection
+            data={accusedData}
+            onChange={setAccusedData}
+            onKnownProceed={() => setActiveStep(1)}
+          />
+          {accusedData.type === "unknown" && (
+            <div className="flex justify-end">
+              <button
+                onClick={() => setActiveStep(1)}
+                className="px-6 py-2.5 rounded-lg text-sm font-semibold"
+                style={{ background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}
+              >
+                Save & Proceed to Seizure →
+              </button>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* ── STEP 1: Seizure Details ── */}
+      {activeStep === 1 && (
         <div className="space-y-5">
           <h3 className="text-sm font-bold text-foreground">Seizure Details</h3>
 
@@ -150,28 +171,29 @@ export function DSRPEWEntryForm({ onClose }: { onClose: () => void }) {
           </div>
 
           <div className={sectionCls} style={{ borderColor: "hsl(var(--border))" }}>
-            <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide mb-3">Accused Details</p>
             <div className="grid grid-cols-2 gap-4">
               <div>
-                <label className={labelCls}>Name</label>
-                <input value={accusedName} onChange={e => setAccusedName(e.target.value)} className={inputCls} style={{ borderColor: "hsl(var(--border))" }} />
+                <label className={labelCls}>Date of Seizure</label>
+                <input type="date" value={dateOfSeizure} onChange={e => setDateOfSeizure(e.target.value)} className={inputCls} style={{ borderColor: "hsl(var(--border))" }} />
               </div>
               <div>
-                <label className={labelCls}>Father/Husband Name</label>
-                <input value={fatherName} onChange={e => setFatherName(e.target.value)} className={inputCls} style={{ borderColor: "hsl(var(--border))" }} />
+                <label className={labelCls}>Crime No.</label>
+                <input value={crimeNo} onChange={e => setCrimeNo(e.target.value)} className={inputCls} style={{ borderColor: "hsl(var(--border))" }} />
               </div>
             </div>
-            <div>
-              <label className={labelCls}>Address</label>
-              <input value={address} onChange={e => setAddress(e.target.value)} className={inputCls} style={{ borderColor: "hsl(var(--border))" }} />
-            </div>
-            <div>
-              <label className={labelCls}>Offence</label>
-              <input value={offence} onChange={e => setOffence(e.target.value)} className={inputCls} style={{ borderColor: "hsl(var(--border))" }} />
+            <div className="grid grid-cols-2 gap-4">
+              <div>
+                <label className={labelCls}>Section</label>
+                <input value={section} onChange={e => setSection(e.target.value)} className={inputCls} style={{ borderColor: "hsl(var(--border))" }} />
+              </div>
+              <div>
+                <label className={labelCls}>Offence</label>
+                <input value={offence} onChange={e => setOffence(e.target.value)} className={inputCls} style={{ borderColor: "hsl(var(--border))" }} />
+              </div>
             </div>
           </div>
 
-          {/* Seized Material - Qty / Value */}
+          {/* Seized Material Table */}
           <div className={sectionCls} style={{ borderColor: "hsl(var(--border))" }}>
             <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide mb-3">Seized Material - Qty / Value</p>
             <table className="w-full text-sm">
@@ -209,58 +231,19 @@ export function DSRPEWEntryForm({ onClose }: { onClose: () => void }) {
             </div>
           </div>
 
-          {/* Additional Notes */}
           <div className={sectionCls} style={{ borderColor: "hsl(var(--border))" }}>
             <label className={labelCls}>Additional Notes</label>
             <textarea value={additionalNotes} onChange={e => setAdditionalNotes(e.target.value)} rows={3} className={inputCls + " resize-none"} style={{ borderColor: "hsl(var(--border))" }} />
           </div>
 
-          <div className="flex justify-end">
-            <button onClick={() => setActiveStep(1)} className="px-6 py-2.5 rounded-lg text-sm font-semibold" style={{ background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}>
-              Save & Go to Seizure →
-            </button>
-          </div>
-        </div>
-      )}
-
-      {/* Step 1: Seizure Details (Crime details) */}
-      {activeStep === 1 && (
-        <div className="space-y-5">
-          <h3 className="text-sm font-bold text-foreground">Seizure Details</h3>
-          <div className={sectionCls} style={{ borderColor: "hsl(var(--border))" }}>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className={labelCls}>Date of Seizure</label>
-                <input type="date" value={dateOfSeizure} onChange={e => setDateOfSeizure(e.target.value)} className={inputCls} style={{ borderColor: "hsl(var(--border))" }} />
-              </div>
-              <div>
-                <label className={labelCls}>Crime No.</label>
-                <input value={crimeNo} onChange={e => setCrimeNo(e.target.value)} className={inputCls} style={{ borderColor: "hsl(var(--border))" }} />
-              </div>
-            </div>
-            <div className="grid grid-cols-2 gap-4">
-              <div>
-                <label className={labelCls}>Section</label>
-                <input value={section} onChange={e => setSection(e.target.value)} className={inputCls} style={{ borderColor: "hsl(var(--border))" }} />
-              </div>
-              <div>
-                <label className={labelCls}>Transport Mode</label>
-                <input value={transportMode} onChange={e => setTransportMode(e.target.value)} className={inputCls} style={{ borderColor: "hsl(var(--border))" }} />
-              </div>
-            </div>
-            <div>
-              <label className={labelCls}>Search/Seizure Details</label>
-              <textarea value={searchDetails} onChange={e => setSearchDetails(e.target.value)} rows={3} className={inputCls + " resize-none"} style={{ borderColor: "hsl(var(--border))" }} />
-            </div>
-          </div>
           <div className="flex justify-between">
             <button onClick={() => setActiveStep(0)} className="px-5 py-2.5 rounded-lg text-sm font-medium border hover:bg-muted" style={{ borderColor: "hsl(var(--border))" }}>← Back</button>
-            <button onClick={() => setActiveStep(2)} className="px-6 py-2.5 rounded-lg text-sm font-semibold" style={{ background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}>Send to Court →</button>
+            <button onClick={() => setActiveStep(2)} className="px-6 py-2.5 rounded-lg text-sm font-semibold" style={{ background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}>Next: Arrest Details →</button>
           </div>
         </div>
       )}
 
-      {/* Step 2: Arrest Details */}
+      {/* ── STEP 2: Arrest Details ── */}
       {activeStep === 2 && (
         <div className="space-y-5">
           <h3 className="text-sm font-bold text-foreground">Arrest Details</h3>
@@ -279,6 +262,14 @@ export function DSRPEWEntryForm({ onClose }: { onClose: () => void }) {
               <label className={labelCls}>Arresting Officer</label>
               <input value={arrestedOfficer} onChange={e => setArrestedOfficer(e.target.value)} className={inputCls} style={{ borderColor: "hsl(var(--border))" }} />
             </div>
+            <div>
+              <label className={labelCls}>Transport Mode</label>
+              <input value={transportMode} onChange={e => setTransportMode(e.target.value)} className={inputCls} style={{ borderColor: "hsl(var(--border))" }} />
+            </div>
+            <div>
+              <label className={labelCls}>Search/Seizure Details</label>
+              <textarea value={searchDetails} onChange={e => setSearchDetails(e.target.value)} rows={3} className={inputCls + " resize-none"} style={{ borderColor: "hsl(var(--border))" }} />
+            </div>
           </div>
           <div className="flex justify-between">
             <button onClick={() => setActiveStep(1)} className="px-5 py-2.5 rounded-lg text-sm font-medium border hover:bg-muted" style={{ borderColor: "hsl(var(--border))" }}>← Back</button>
@@ -287,11 +278,10 @@ export function DSRPEWEntryForm({ onClose }: { onClose: () => void }) {
         </div>
       )}
 
-      {/* Step 3: Court Hearing Details */}
+      {/* ── STEP 3: Court Hearing ── */}
       {activeStep === 3 && (
         <div className="space-y-5">
           <h3 className="text-sm font-bold text-foreground">Court Hearing Details</h3>
-
           <div className={sectionCls} style={{ borderColor: "hsl(var(--border))" }}>
             <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide mb-3">Court Information</p>
             <div className="grid grid-cols-2 gap-4">
@@ -299,7 +289,6 @@ export function DSRPEWEntryForm({ onClose }: { onClose: () => void }) {
               <div><label className={labelCls}>Court Location</label><input value={courtLocation} onChange={e => setCourtLocation(e.target.value)} className={inputCls} style={{ borderColor: "hsl(var(--border))" }} /></div>
             </div>
           </div>
-
           <div className={sectionCls} style={{ borderColor: "hsl(var(--border))" }}>
             <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide mb-3">Court Police Details</p>
             <div className="grid grid-cols-2 gap-4">
@@ -307,7 +296,6 @@ export function DSRPEWEntryForm({ onClose }: { onClose: () => void }) {
               <div><label className={labelCls}>Police ID</label><input value={policeId} onChange={e => setPoliceId(e.target.value)} className={inputCls} style={{ borderColor: "hsl(var(--border))" }} /></div>
             </div>
           </div>
-
           <div className={sectionCls} style={{ borderColor: "hsl(var(--border))" }}>
             <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide mb-3">Hearing Details</p>
             <div className="grid grid-cols-3 gap-4">
@@ -316,16 +304,10 @@ export function DSRPEWEntryForm({ onClose }: { onClose: () => void }) {
               <div><label className={labelCls}>Courtroom Number</label><input value={courtRoomNo} onChange={e => setCourtRoomNo(e.target.value)} className={inputCls} style={{ borderColor: "hsl(var(--border))" }} /></div>
             </div>
           </div>
-
           <div className="flex gap-3">
-            <button onClick={() => setCourtDecision("remand")} className={`flex-1 py-2.5 rounded-lg text-sm font-semibold transition-colors ${courtDecision === "remand" ? "text-primary-foreground" : "border hover:bg-muted"}`} style={courtDecision === "remand" ? { background: "hsl(var(--primary))" } : { borderColor: "hsl(var(--border))" }}>
-              Court Decision: Remand (Jail)
-            </button>
-            <button onClick={() => setCourtDecision("bail")} className={`flex-1 py-2.5 rounded-lg text-sm font-semibold transition-colors ${courtDecision === "bail" ? "text-primary-foreground" : "border hover:bg-muted"}`} style={courtDecision === "bail" ? { background: "hsl(var(--destructive))" } : { borderColor: "hsl(var(--border))" }}>
-              Court Decision: Bail
-            </button>
+            <button onClick={() => setCourtDecision("remand")} className={`flex-1 py-2.5 rounded-lg text-sm font-semibold transition-colors ${courtDecision === "remand" ? "text-primary-foreground" : "border hover:bg-muted"}`} style={courtDecision === "remand" ? { background: "hsl(var(--primary))" } : { borderColor: "hsl(var(--border))" }}>Court Decision: Remand (Jail)</button>
+            <button onClick={() => setCourtDecision("bail")} className={`flex-1 py-2.5 rounded-lg text-sm font-semibold transition-colors ${courtDecision === "bail" ? "text-primary-foreground" : "border hover:bg-muted"}`} style={courtDecision === "bail" ? { background: "hsl(var(--destructive))" } : { borderColor: "hsl(var(--border))" }}>Court Decision: Bail</button>
           </div>
-
           <div className="flex justify-between">
             <button onClick={() => setActiveStep(2)} className="px-5 py-2.5 rounded-lg text-sm font-medium border hover:bg-muted" style={{ borderColor: "hsl(var(--border))" }}>← Back</button>
             <button onClick={() => setActiveStep(4)} className="px-6 py-2.5 rounded-lg text-sm font-semibold" style={{ background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}>Next: Jail Details →</button>
@@ -333,11 +315,10 @@ export function DSRPEWEntryForm({ onClose }: { onClose: () => void }) {
         </div>
       )}
 
-      {/* Step 4: Remand (Jail) Details */}
+      {/* ── STEP 4: Remand (Jail) Details ── */}
       {activeStep === 4 && (
         <div className="space-y-5">
           <h3 className="text-sm font-bold text-foreground">Remand (Jail) Details</h3>
-
           <div className={sectionCls} style={{ borderColor: "hsl(var(--border))" }}>
             <div className="grid grid-cols-2 gap-4">
               <div><label className={labelCls}>Remand Days Count</label><input value={remandDays} onChange={e => setRemandDays(e.target.value)} className={inputCls} style={{ borderColor: "hsl(var(--border))" }} /></div>
@@ -348,7 +329,6 @@ export function DSRPEWEntryForm({ onClose }: { onClose: () => void }) {
               <div><label className={labelCls}>Release Date</label><input type="date" value={releaseDate} onChange={e => setReleaseDate(e.target.value)} className={inputCls} style={{ borderColor: "hsl(var(--border))" }} /></div>
             </div>
           </div>
-
           <div className={sectionCls} style={{ borderColor: "hsl(var(--border))" }}>
             <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide mb-3">Jail / Updated</p>
             <div className="grid grid-cols-2 gap-4">
@@ -360,8 +340,6 @@ export function DSRPEWEntryForm({ onClose }: { onClose: () => void }) {
               <textarea value={dailyStatus} onChange={e => setDailyStatus(e.target.value)} rows={3} className={inputCls + " resize-none"} style={{ borderColor: "hsl(var(--border))" }} />
             </div>
           </div>
-
-          {/* Co-Accused */}
           <div className={sectionCls} style={{ borderColor: "hsl(var(--border))" }}>
             <div className="flex items-center justify-between mb-2">
               <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide">Co-Accused Details</p>
@@ -378,7 +356,6 @@ export function DSRPEWEntryForm({ onClose }: { onClose: () => void }) {
               </div>
             ))}
           </div>
-
           <div className="flex justify-between">
             <button onClick={() => setActiveStep(3)} className="px-5 py-2.5 rounded-lg text-sm font-medium border hover:bg-muted" style={{ borderColor: "hsl(var(--border))" }}>← Back</button>
             <button onClick={() => setActiveStep(5)} className="px-6 py-2.5 rounded-lg text-sm font-semibold" style={{ background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}>Save & Proceed to Monitoring</button>
@@ -386,18 +363,16 @@ export function DSRPEWEntryForm({ onClose }: { onClose: () => void }) {
         </div>
       )}
 
-      {/* Step 5: Monitoring / Bail Details */}
+      {/* ── STEP 5: Monitoring / Bail Details ── */}
       {activeStep === 5 && (
         <div className="space-y-5">
           <h3 className="text-sm font-bold text-foreground">Bail Details</h3>
-
           <div className={sectionCls} style={{ borderColor: "hsl(var(--border))" }}>
             <div className="grid grid-cols-2 gap-4">
               <div><label className={labelCls}>Bail Date & Time</label><input type="datetime-local" value={bailDate} onChange={e => setBailDate(e.target.value)} className={inputCls} style={{ borderColor: "hsl(var(--border))" }} /></div>
               <div><label className={labelCls}>Location</label><input value={bailLocation} onChange={e => setBailLocation(e.target.value)} className={inputCls} style={{ borderColor: "hsl(var(--border))" }} /></div>
             </div>
           </div>
-
           <div className={sectionCls} style={{ borderColor: "hsl(var(--border))" }}>
             <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide mb-3">Personal & Advocate Details</p>
             <div className="grid grid-cols-2 gap-4">
@@ -411,8 +386,6 @@ export function DSRPEWEntryForm({ onClose }: { onClose: () => void }) {
             <div><label className={labelCls}>Advocate Name</label><input value={advocateName} onChange={e => setAdvocateName(e.target.value)} className={inputCls} style={{ borderColor: "hsl(var(--border))" }} /></div>
             <div><label className={labelCls}>Bail Conditions</label><textarea value={bailConditions} onChange={e => setBailConditions(e.target.value)} rows={3} className={inputCls + " resize-none"} style={{ borderColor: "hsl(var(--border))" }} /></div>
           </div>
-
-          {/* Monitoring Dashboard summary */}
           <div className={sectionCls} style={{ borderColor: "hsl(var(--border))" }}>
             <p className="text-xs font-bold text-muted-foreground uppercase tracking-wide mb-3">Monitoring Dashboard</p>
             <div className="grid grid-cols-4 gap-3">
@@ -429,7 +402,6 @@ export function DSRPEWEntryForm({ onClose }: { onClose: () => void }) {
               ))}
             </div>
           </div>
-
           <div className="flex justify-between">
             <button onClick={() => setActiveStep(4)} className="px-5 py-2.5 rounded-lg text-sm font-medium border hover:bg-muted" style={{ borderColor: "hsl(var(--border))" }}>← Back</button>
             <button onClick={handleSave} className="px-6 py-2.5 rounded-lg text-sm font-semibold" style={{ background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}>
