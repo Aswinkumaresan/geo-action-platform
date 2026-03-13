@@ -554,7 +554,20 @@ export function DSRPage() {
       )}
 
       {/* NDPS Tab Content */}
-      {topTab === "NDPS" && <DSRNDPSForm />}
+      {topTab === "NDPS" && (
+        <>
+          <div className="flex items-center justify-end mb-4">
+            <button
+              onClick={() => setShowNDPSEntry(true)}
+              className="flex items-center gap-2 px-5 py-2 rounded-lg text-sm font-semibold"
+              style={{ background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}
+            >
+              <Plus className="h-4 w-4" /> Add NDPS Entry
+            </button>
+          </div>
+          <DSRNDPSForm />
+        </>
+      )}
 
       {/* New Entry Dialog */}
       <Dialog open={showNewEntry} onOpenChange={setShowNewEntry}>
@@ -570,6 +583,13 @@ export function DSRPage() {
       <Dialog open={showPEWEntry} onOpenChange={setShowPEWEntry}>
         <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto">
           <DSRPEWEntryForm onClose={() => setShowPEWEntry(false)} />
+        </DialogContent>
+      </Dialog>
+
+      {/* NDPS Entry Dialog */}
+      <Dialog open={showNDPSEntry} onOpenChange={setShowNDPSEntry}>
+        <DialogContent className="sm:max-w-[800px] max-h-[90vh] overflow-y-auto">
+          <DSRNDPSEntryForm onClose={() => setShowNDPSEntry(false)} />
         </DialogContent>
       </Dialog>
     </div>
