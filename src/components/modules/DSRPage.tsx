@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { Search, FileText, FileSpreadsheet, Plus, Save } from "lucide-react";
+import { Search, FileText, FileSpreadsheet, Plus, Save, QrCode } from "lucide-react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { DSRNewEntryForm } from "./DSRNewEntryForm";
 import { DSRPEWForm } from "./DSRPEWForm";
 import { DSRNDPSForm } from "./DSRNDPSForm";
 import { DSRPEWEntryForm } from "./DSRPEWEntryForm";
 import { DSRNDPSEntryForm } from "./DSRNDPSEntryForm";
+import { AddCheckpointEntryForm } from "./AddCheckpointEntryForm";
+import { CheckpointAttendancePage } from "./CheckpointAttendancePage";
 
 // ── BL Goondas ────────────────────────────────────────────────────────────────
 const goondasData = [
