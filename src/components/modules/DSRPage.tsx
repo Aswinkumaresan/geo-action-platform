@@ -245,6 +245,23 @@ export function DSRPage() {
   const [showCheckpointEntry, setShowCheckpointEntry] = useState(false);
   const [showAttendance, setShowAttendance] = useState(false);
 
+  // If showing Attendance or Checkpoint Entry inline (full-page style within content area)
+  if (showAttendance) {
+    return (
+      <div className="flex-1 overflow-y-auto p-6">
+        <CheckpointAttendancePage onBack={() => setShowAttendance(false)} />
+      </div>
+    );
+  }
+
+  if (showCheckpointEntry) {
+    return (
+      <div className="flex-1 overflow-y-auto p-6">
+        <AddCheckpointEntryForm onClose={() => setShowCheckpointEntry(false)} />
+      </div>
+    );
+  }
+
   return (
     <div className="flex-1 overflow-y-auto p-6">
       {/* Header */}
