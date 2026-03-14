@@ -547,7 +547,10 @@ export function DSRPage() {
 
               {/* ── Checkpost Seizures ── */}
               {activeTab === "Checkpost Seizures" && (
-                <CheckpostSeizuresForm />
+                <CheckpostSeizuresForm
+                  onAttendance={() => setShowAttendance(true)}
+                  onAddEntry={() => setShowCheckpointEntry(true)}
+                />
               )}
 
               {/* ── WhatsApp Calls ── */}
