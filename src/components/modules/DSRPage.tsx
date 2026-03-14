@@ -100,7 +100,7 @@ const tnDistricts = [
   "Sivaganga","Karur","Namakkal","Kancheepuram","Tiruvannamalai",
 ];
 
-function CheckpostSeizuresForm() {
+function CheckpostSeizuresForm({ onAttendance, onAddEntry }: { onAttendance: () => void; onAddEntry: () => void }) {
   const today = new Date().toISOString().split("T")[0];
   const [reportDate, setReportDate] = useState(today);
   const [rows, setRows] = useState<CheckpostRow[]>([emptyRow(1)]);
@@ -131,6 +131,20 @@ function CheckpostSeizuresForm() {
           />
         </div>
         <div className="flex items-center gap-3">
+          <button
+            onClick={onAttendance}
+            className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium border transition-colors hover:bg-muted"
+            style={{ borderColor: "hsl(var(--border))" }}
+          >
+            <QrCode className="h-4 w-4" /> Attendance
+          </button>
+          <button
+            onClick={onAddEntry}
+            className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-semibold"
+            style={{ background: "hsl(var(--primary))", color: "hsl(var(--primary-foreground))" }}
+          >
+            <Plus className="h-4 w-4" /> Add Checkpoint Entry
+          </button>
           <button className="flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium border transition-colors hover:bg-muted" style={{ borderColor: "hsl(var(--border))" }}>
             <FileSpreadsheet className="h-4 w-4" /> Export Excel
           </button>
