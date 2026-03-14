@@ -242,6 +242,8 @@ export function DSRPage() {
   const [showNewEntry, setShowNewEntry] = useState(false);
   const [showPEWEntry, setShowPEWEntry] = useState(false);
   const [showNDPSEntry, setShowNDPSEntry] = useState(false);
+  const [showCheckpointEntry, setShowCheckpointEntry] = useState(false);
+  const [showAttendance, setShowAttendance] = useState(false);
 
   return (
     <div className="flex-1 overflow-y-auto p-6">
